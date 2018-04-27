@@ -72,14 +72,14 @@ public class SingleLinkedList {
 
     /**
      * delete node with out head
+     * <p>
+     * won't work if node is last node in the LL.
      *
-     * won't work if node is last one.
-     *
-     * @asked Oracle April'18
      * @param node node
+     * @asked Oracle April'18
      */
-    public void deleteNodeWithoutHead(Node node){
-        if(node.next == null){
+    public void deleteNodeWithoutHead(Node node) {
+        if (node.next == null) {
             return;
         }
 
@@ -88,7 +88,7 @@ public class SingleLinkedList {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder("\n");
+        StringBuilder sb = new StringBuilder();
 
         if (head == null) return "";
         Node node = head;
@@ -112,24 +112,24 @@ public class SingleLinkedList {
         singleLinkedList.insertNode(3);
         singleLinkedList.insertNode(4);
         singleLinkedList.insertNode(5);
-
+        System.out.println("After inserting : ");
         singleLinkedList.printLinkedList();
 
         singleLinkedList.deleteNode(3);
         singleLinkedList.deleteNode(5);
         singleLinkedList.deleteNode(1);
-        System.out.println(singleLinkedList);
+        System.out.println("\nAfter deleting 3,5,1 : ");
+        System.out.print(singleLinkedList);
 
         singleLinkedList.insertNode(5);
         Node newNode1 = singleLinkedList.insertNode(1);
         Node newNode3 = singleLinkedList.insertNode(3);
-        System.out.println(singleLinkedList);
+        System.out.println("Same list : " + singleLinkedList);
 
         singleLinkedList.deleteNodeWithoutHead(newNode1);
-        System.out.println(singleLinkedList);
+        System.out.println("After deleting 1 : "+singleLinkedList);
         singleLinkedList.deleteNodeWithoutHead(newNode3);
-        System.out.println(singleLinkedList);
-
+        System.out.println("After deleting 3 : "+singleLinkedList);
     }
 
 }
