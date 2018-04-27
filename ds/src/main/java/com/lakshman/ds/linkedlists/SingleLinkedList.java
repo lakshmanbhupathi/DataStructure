@@ -42,14 +42,14 @@ public class SingleLinkedList {
      * @param value value
      * @return true if deleted
      */
-    public boolean deleteNode(int value){
-        if(head == null) return false;
-        if(head.value == value) head = head.next;
+    public boolean deleteNode(int value) {
+        if (head == null) return false;
+        if (head.value == value) head = head.next;
 
         Node currentNode = head;
         Node prevNode = null;
-        while(currentNode != null){
-            if (currentNode.value == value){
+        while (currentNode != null) {
+            if (currentNode.value == value) {
                 prevNode.next = currentNode.next;
                 return true;
             }
@@ -69,6 +69,24 @@ public class SingleLinkedList {
         }
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder("\n");
+
+        if (head == null) return "";
+        Node node = head;
+        while (node != null) {
+
+            sb.append(node.value);
+            if (node.next != null) {
+                sb.append("-->");
+            }
+            node = node.next;
+        }
+
+        return sb.toString();
+
+    }
+
     public static void main(String[] args) {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         singleLinkedList.insertNode(1);
@@ -82,8 +100,7 @@ public class SingleLinkedList {
         singleLinkedList.deleteNode(3);
         singleLinkedList.deleteNode(5);
         singleLinkedList.deleteNode(1);
-        System.out.println();
-        singleLinkedList.printLinkedList();
+        System.out.println(singleLinkedList);
     }
 
 }
