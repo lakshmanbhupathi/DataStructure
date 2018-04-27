@@ -20,20 +20,21 @@ public class SingleLinkedList {
      * Inserts node into linkedList
      *
      * @param value val
-     * @return true if inserted
+     * @return node newNode
      */
-    public boolean insertNode(int value) {
+    public Node insertNode(int value) {
+        Node newNode = new Node(value, null);
         if (head == null) {
-            head = new Node(value, null);
-            return true;
+            head = newNode;
+            return newNode;
         }
 
         Node currentNode = head;
         while (currentNode.next != null) {
             currentNode = currentNode.next;
         }
-        currentNode.next = new Node(value, null);
-        return true;
+        currentNode.next = newNode;
+        return newNode;
     }
 
     /**
@@ -69,6 +70,23 @@ public class SingleLinkedList {
         }
     }
 
+    /**
+     * delete node with out head
+     *
+     * won't work if node is last one.
+     *
+     * @asked Oracle April'18
+     * @param node node
+     */
+    public void deleteNodeWithoutHead(Node node){
+        if(node.next == null){
+            return;
+        }
+
+        node.value = node.next.value;
+        node.next = node.next.next;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder("\n");
 
@@ -101,6 +119,17 @@ public class SingleLinkedList {
         singleLinkedList.deleteNode(5);
         singleLinkedList.deleteNode(1);
         System.out.println(singleLinkedList);
+
+        singleLinkedList.insertNode(5);
+        Node newNode1 = singleLinkedList.insertNode(1);
+        Node newNode3 = singleLinkedList.insertNode(3);
+        System.out.println(singleLinkedList);
+
+        singleLinkedList.deleteNodeWithoutHead(newNode1);
+        System.out.println(singleLinkedList);
+        singleLinkedList.deleteNodeWithoutHead(newNode3);
+        System.out.println(singleLinkedList);
+
     }
 
 }
