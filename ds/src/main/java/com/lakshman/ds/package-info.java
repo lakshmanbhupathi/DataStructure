@@ -2,7 +2,7 @@ package com.lakshman.ds;
 
 //All basic data structures
 // TODO BST
-// TODO LinkedLists
+// TODO DoubleLinkedLists
 // TODO Graphs
 // TODO Queues
 // TODO stack

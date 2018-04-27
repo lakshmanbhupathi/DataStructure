@@ -2,16 +2,15 @@ package com.lakshman.ds.linkedlists;
 
 /**
  * Single Linked list and basic operations
- *
  */
 public class SingleLinkedList {
     private Node head;
 
-    class Node{
+    class Node {
         int value;
         Node next;
 
-        Node(int value, Node next){
+        Node(int value, Node next) {
             this.value = value;
             this.next = next;
         }
@@ -19,26 +18,27 @@ public class SingleLinkedList {
 
     /**
      * Inserts node into linkedList
-     * @param value
-     * @return
+     *
+     * @param value val
+     * @return true if inserted
      */
-    public boolean insertNode(int value){
-        if(head == null){
-            head = new Node(value,null);
+    public boolean insertNode(int value) {
+        if (head == null) {
+            head = new Node(value, null);
             return true;
         }
 
         Node currentNode = head;
-        while(currentNode.next != null){
+        while (currentNode.next != null) {
             currentNode = currentNode.next;
         }
-        currentNode.next = new Node(value,null);
+        currentNode.next = new Node(value, null);
         return true;
     }
 
-    public void printLinkedList(){
+    public void printLinkedList() {
         Node currentNode = head;
-        while(currentNode != null){
+        while (currentNode != null) {
             System.out.print(currentNode.next == null ? currentNode.value : currentNode.value + " --> ");
             currentNode = currentNode.next;
         }
