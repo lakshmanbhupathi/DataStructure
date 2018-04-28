@@ -106,23 +106,46 @@ public class SingleLinkedList {
 
     /**
      * Recursive
-     *
+     * <p>
      * Ignore not working
      *
      * @asked Phenom people April'18
      */
-    public void reverseLinkedList(){
-        if(head == null) return;
-
+    public void reverseLinkedList() {
+        if (head == null) return;
         reverseLinkedList(head);
     }
+
     private Node reverseLinkedList(Node node) {
-        if(node.next == null){
+        if (node.next == null) {
             head = node;
             return node;
         }
         node.next = reverseLinkedList(node);
         return node;
+    }
+    /**
+     * complete Explanation https://www.youtube.com/watch?time_continue=241&v=MRe3UsRadKw
+     */
+    public void reverseLinkedListRecursive() {
+        reverseLinkedListRecursive(head);
+    }
+
+    private void reverseLinkedListRecursive(Node node) {
+        if (node == null) return;
+
+        // Then this is last element
+        if (node.next == null){
+            head = node;
+            return;
+        }
+
+        // calling recursively down
+        reverseLinkedListRecursive(node.next);
+
+
+        node.next.next = node;
+        node.next = null;
     }
 
     public static void main(String[] args) {
@@ -135,8 +158,8 @@ public class SingleLinkedList {
         System.out.println("After inserting : ");
         singleLinkedList.printLinkedList();
 
-        singleLinkedList.reverseLinkedList();
-        System.out.println("reverse LL :: "+singleLinkedList);
+        singleLinkedList.reverseLinkedListRecursive();
+        System.out.println("reverse LL :: " + singleLinkedList);
 
         singleLinkedList.deleteNode(3);
         singleLinkedList.deleteNode(5);
@@ -150,9 +173,9 @@ public class SingleLinkedList {
         System.out.println("Same list : " + singleLinkedList);
 
         singleLinkedList.deleteNodeWithoutHead(newNode1);
-        System.out.println("After deleting 1 : "+singleLinkedList);
+        System.out.println("After deleting 1 : " + singleLinkedList);
         singleLinkedList.deleteNodeWithoutHead(newNode3);
-        System.out.println("After deleting 3 : "+singleLinkedList);
+        System.out.println("After deleting 3 : " + singleLinkedList);
     }
 
 }
