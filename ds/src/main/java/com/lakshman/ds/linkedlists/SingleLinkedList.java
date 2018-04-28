@@ -102,7 +102,27 @@ public class SingleLinkedList {
         }
 
         return sb.toString();
+    }
 
+    /**
+     * Recursive
+     *
+     * Ignore not working
+     *
+     * @asked Phenom people April'18
+     */
+    public void reverseLinkedList(){
+        if(head == null) return;
+
+        reverseLinkedList(head);
+    }
+    private Node reverseLinkedList(Node node) {
+        if(node.next == null){
+            head = node;
+            return node;
+        }
+        node.next = reverseLinkedList(node);
+        return node;
     }
 
     public static void main(String[] args) {
@@ -114,6 +134,9 @@ public class SingleLinkedList {
         singleLinkedList.insertNode(5);
         System.out.println("After inserting : ");
         singleLinkedList.printLinkedList();
+
+        singleLinkedList.reverseLinkedList();
+        System.out.println("reverse LL :: "+singleLinkedList);
 
         singleLinkedList.deleteNode(3);
         singleLinkedList.deleteNode(5);
