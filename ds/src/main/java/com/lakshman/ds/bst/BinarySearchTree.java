@@ -108,11 +108,11 @@ public class BinarySearchTree {
     /* Returns true if binary tree with root as root is height-balanced */
 
     /**
-     *  Elaborated version
+     * Elaborated version
      *
-     * @see <a href="https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/">Geeks4Geeks</a>
      * @param node
      * @return
+     * @see <a href="https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/">Geeks4Geeks</a>
      */
     private boolean isBalanceddd(Node node) {
         int lh; /* for height of left subtree */
@@ -136,6 +136,20 @@ public class BinarySearchTree {
         return false;
     }
 
+    public boolean isPresent(int key) {
+        return isPresent(root, key) != null;
+    }
+
+    private Node isPresent(Node node, int key) {
+        if(node == null ) return null;
+        if (node.data == key) return node;
+        else if (node.data > key) {
+            return isPresent(node.left, key);
+        } else {
+            return isPresent(node.right, key);
+        }
+    }
+
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
         bst.insert(5);
@@ -151,5 +165,8 @@ public class BinarySearchTree {
         System.out.println(bst.getHeight());
         System.out.println(bst.isBalanced());
         System.out.println(bst.isBalanceddd(bst.root));
+        System.out.println(bst.isPresent(bst.root,0));
+        System.out.println(bst.isPresent(0));
+        System.out.println(bst.isPresent(1));
     }
 }
