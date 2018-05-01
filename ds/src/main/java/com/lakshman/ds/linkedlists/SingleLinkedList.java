@@ -124,6 +124,15 @@ public class SingleLinkedList {
         node.next = reverseLinkedList(node);
         return node;
     }
+
+    public void reverseLinkedListIterative(){
+        if(head == null || head.next == null) return;
+
+        Node currentNode = head;
+        while(currentNode.next != null){
+            currentNode = currentNode.next;
+        }
+    }
     /**
      * complete Explanation https://www.youtube.com/watch?time_continue=241&v=MRe3UsRadKw
      */

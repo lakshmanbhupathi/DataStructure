@@ -92,7 +92,7 @@ public class BinarySearchTree {
     }
 
     /**
-     *  A binary tree is said to be not - balanced when any of the node's difference of it's sub tree more than 1
+     * A binary tree is said to be not - balanced when any of the node's difference of it's sub tree more than 1
      *
      * @param node
      * @return
@@ -104,11 +104,43 @@ public class BinarySearchTree {
                         Math.abs(getHeight(node.left) - getHeight(node.right)) <= 1);  // ***abs
     }
 
+
+    /* Returns true if binary tree with root as root is height-balanced */
+
+    /**
+     *  Elaborated version
+     *
+     * @see <a href="https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/">Geeks4Geeks</a>
+     * @param node
+     * @return
+     */
+    private boolean isBalanceddd(Node node) {
+        int lh; /* for height of left subtree */
+
+        int rh; /* for height of right subtree */
+
+        /* If tree is empty then return true */
+        if (node == null)
+            return true;
+
+        /* Get the height of left and right sub trees */
+        lh = getHeight(node.left);
+        rh = getHeight(node.right);
+
+        if (Math.abs(lh - rh) <= 1
+                && isBalanceddd(node.left)
+                && isBalanceddd(node.right))
+            return true;
+
+        /* If we reach here then tree is not height-balanced */
+        return false;
+    }
+
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
         bst.insert(5);
-        bst.insert(2);
         bst.insert(3);
+        bst.insert(2);
         bst.insert(1);
 //        bst.insert(0);
         bst.insert(7);
@@ -118,5 +150,6 @@ public class BinarySearchTree {
         bst.printNodeAtSameDepth();
         System.out.println(bst.getHeight());
         System.out.println(bst.isBalanced());
+        System.out.println(bst.isBalanceddd(bst.root));
     }
 }
