@@ -1,5 +1,8 @@
 package com.lakshman.ds.bst;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class BinarySearchTree {
 
     public static class Node {
@@ -36,8 +39,37 @@ public class BinarySearchTree {
             }
             insert(node.right, data);
         }
-
         return false;
+    }
+
+    public void printNodeAtSameDepth() {
+        if (root == null) {
+            return;
+        }
+
+        Queue<Node> currentLevelQueue = new ArrayDeque<>();
+        Queue<Node> nextLevelQueue = new ArrayDeque<>();
+        currentLevelQueue.add(root);
+
+        while (!currentLevelQueue.isEmpty()) {
+            Node node = currentLevelQueue.remove();
+            String comma = (!currentLevelQueue.isEmpty()) ? ", ":"";
+            System.out.print("(" + node.data + ")" + comma);
+
+            if (node.left != null) nextLevelQueue.add(node.left);
+            if (node.right != null) nextLevelQueue.add(node.right);
+
+            if(currentLevelQueue.isEmpty()){
+
+                // new line
+                System.out.println();
+
+                // swapping queues
+                Queue<Node> tempQ = currentLevelQueue;
+                currentLevelQueue = nextLevelQueue;
+                nextLevelQueue = tempQ;
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -48,8 +80,8 @@ public class BinarySearchTree {
         bst.insert(1);
         bst.insert(7);
         bst.insert(6);
+        bst.insert(8);
 
-        System.out.println("debug");
+        bst.printNodeAtSameDepth();
     }
-
 }
