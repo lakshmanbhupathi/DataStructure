@@ -42,6 +42,9 @@ public class BinarySearchTree {
         return false;
     }
 
+    /**
+     * @asked LINE April'18
+     */
     public void printNodeAtSameDepth() {
         if (root == null) {
             return;
@@ -53,14 +56,13 @@ public class BinarySearchTree {
 
         while (!currentLevelQueue.isEmpty()) {
             Node node = currentLevelQueue.remove();
-            String comma = (!currentLevelQueue.isEmpty()) ? ", ":"";
+            String comma = (!currentLevelQueue.isEmpty()) ? ", " : "";
             System.out.print("(" + node.data + ")" + comma);
 
             if (node.left != null) nextLevelQueue.add(node.left);
             if (node.right != null) nextLevelQueue.add(node.right);
 
-            if(currentLevelQueue.isEmpty()){
-
+            if (currentLevelQueue.isEmpty()) {
                 // new line
                 System.out.println();
 
@@ -70,6 +72,16 @@ public class BinarySearchTree {
                 nextLevelQueue = tempQ;
             }
         }
+    }
+
+    public int getHeight() {
+        if (root == null) return 0;
+        return getHeight(root);
+    }
+
+    private int getHeight(Node node) {
+        if (node == null) return 0;
+        return Math.max(1 + getHeight(node.left), 1 + getHeight(node.right));
     }
 
     public static void main(String[] args) {
@@ -83,5 +95,6 @@ public class BinarySearchTree {
         bst.insert(8);
 
         bst.printNodeAtSameDepth();
+        System.out.println(bst.getHeight());
     }
 }
