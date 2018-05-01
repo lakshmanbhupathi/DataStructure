@@ -110,8 +110,6 @@ public class BinarySearchTree {
     /**
      * Elaborated version
      *
-     * @param node
-     * @return
      * @see <a href="https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/">Geeks4Geeks</a>
      */
     private boolean isBalanceddd(Node node) {
