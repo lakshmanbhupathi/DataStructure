@@ -81,20 +81,42 @@ public class BinarySearchTree {
 
     private int getHeight(Node node) {
         if (node == null) return 0;
-        return Math.max(1 + getHeight(node.left), 1 + getHeight(node.right));
+        return Math.max(1 + getHeight(node.left), 1 + getHeight(node.right)); // return only max among sub tree's height
+    }
+
+    /**
+     * @asked Morgan Stanley April'18
+     */
+    public boolean isBalanced() {
+        return isBalanced(root);
+    }
+
+    /**
+     *  A binary tree is said to be not - balanced when any of the node's difference of it's sub tree more than 1
+     *
+     * @param node
+     * @return
+     */
+    private boolean isBalanced(Node node) {
+        return (node == null) || // null return true so won't proceed ahead
+                (isBalanced(node.left) &&   // recursively calling on left & right sub trees if any fails returning false whole together
+                        isBalanced(node.right) &&
+                        Math.abs(getHeight(node.left) - getHeight(node.right)) <= 1);  // ***abs
     }
 
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
         bst.insert(5);
-        bst.insert(3);
         bst.insert(2);
+        bst.insert(3);
         bst.insert(1);
+//        bst.insert(0);
         bst.insert(7);
         bst.insert(6);
         bst.insert(8);
 
         bst.printNodeAtSameDepth();
         System.out.println(bst.getHeight());
+        System.out.println(bst.isBalanced());
     }
 }
