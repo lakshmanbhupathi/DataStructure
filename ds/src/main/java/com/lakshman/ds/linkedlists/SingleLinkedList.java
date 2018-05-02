@@ -125,14 +125,15 @@ public class SingleLinkedList {
         return node;
     }
 
-    public void reverseLinkedListIterative(){
-        if(head == null || head.next == null) return;
+    public void reverseLinkedListIterative() {
+        if (head == null || head.next == null) return;
 
         Node currentNode = head;
-        while(currentNode.next != null){
+        while (currentNode.next != null) {
             currentNode = currentNode.next;
         }
     }
+
     /**
      * complete Explanation https://www.youtube.com/watch?time_continue=241&v=MRe3UsRadKw
      */
@@ -144,7 +145,7 @@ public class SingleLinkedList {
         if (node == null) return;
 
         // Then this is last element
-        if (node.next == null){
+        if (node.next == null) {
             head = node;
             return;
         }
@@ -155,6 +156,17 @@ public class SingleLinkedList {
 
         node.next.next = node;
         node.next = null;
+    }
+
+    public boolean find(int data) {
+        Node node = head;
+        while (node != null) {
+            if (node.value == data) {
+                return true;
+            }
+            node = node.next;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -185,6 +197,11 @@ public class SingleLinkedList {
         System.out.println("After deleting 1 : " + singleLinkedList);
         singleLinkedList.deleteNodeWithoutHead(newNode3);
         System.out.println("After deleting 3 : " + singleLinkedList);
+
+        System.out.println(singleLinkedList.find(3));
+        System.out.println(singleLinkedList.find(5));
+        System.out.println(singleLinkedList.find(1));
+
     }
 
 }
