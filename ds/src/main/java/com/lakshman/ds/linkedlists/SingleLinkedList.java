@@ -170,7 +170,7 @@ public class SingleLinkedList {
     }
 
     /**
-     * is circular finds returns if linked list is in loop
+     * Is circular finds returns if linked list is in loop
      *
      * using runner technique
      *
@@ -197,6 +197,30 @@ public class SingleLinkedList {
         }
 
         return true;
+    }
+
+    /**
+     * Finding middle element of linkedList in single traversal by using runner technique
+     *
+     * @return middle element's value
+     */
+    public int findMiddleElement(){
+        Node currentNode = head;
+        Node middleNode = head;
+        int length = 0;
+        while(currentNode != null){
+            length++;
+
+            if(length%2 == 0){
+                middleNode = middleNode.next;
+            }
+
+            currentNode = currentNode.next;
+        }
+        if(length % 2 == 1){
+            middleNode = middleNode.next;
+        }
+        return middleNode.value;
     }
 
     public static void main(String[] args) {
