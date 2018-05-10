@@ -169,6 +169,15 @@ public class SingleLinkedList {
         return false;
     }
 
+    /**
+     * is circular finds returns if linked list is in loop
+     *
+     * @return true if circular
+     */
+    public boolean isCircular(){
+        return false;
+    }
+
     public static void main(String[] args) {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         singleLinkedList.insertNode(1);
