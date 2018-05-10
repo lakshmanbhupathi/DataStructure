@@ -171,24 +171,24 @@ public class SingleLinkedList {
 
     /**
      * Is circular finds returns if linked list is in loop
-     *
+     * <p>
      * using runner technique
-     *
+     * <p>
      * one pointer will increment normally
      * another pointer increments twice as fast first pointer
      * if its at certain point they both must be equal
      *
      * @return true if circular
      */
-    public boolean isCircular(){
+    public boolean isCircular() {
         Node currentNode = head;
         Node fastRunnerNode = null;
 
         // if any pointer becomes null then LL is linear
-        while(currentNode != null || currentNode.next != null || fastRunnerNode != null){
+        while (currentNode != null || currentNode.next != null || fastRunnerNode != null) {
 
             // if both fast and slow pointers are equal then LL is linear
-            if(currentNode == fastRunnerNode){
+            if (currentNode == fastRunnerNode) {
                 return true;
             }
 
@@ -204,20 +204,20 @@ public class SingleLinkedList {
      *
      * @return middle element's value
      */
-    public int findMiddleElement(){
+    public int findMiddleElement() {
         Node currentNode = head;
         Node middleNode = head;
         int length = 0;
-        while(currentNode != null){
+        while (currentNode != null) {
             length++;
 
-            if(length%2 == 0){
+            if (length % 2 == 0) {
                 middleNode = middleNode.next;
             }
 
             currentNode = currentNode.next;
         }
-        if(length % 2 == 1){
+        if (length % 2 == 1) {
             middleNode = middleNode.next;
         }
         return middleNode.value;
