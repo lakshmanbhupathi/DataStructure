@@ -1,5 +1,8 @@
 package com.lakshman.ds.linkedlists;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Single Linked list and basic operations
  */
@@ -7,11 +10,11 @@ public class SingleLinkedList {
     private Node head;
 
     class Node {
-        int value;
+        int data;
         Node next;
 
-        Node(int value, Node next) {
-            this.value = value;
+        Node(int data, Node next) {
+            this.data = data;
             this.next = next;
         }
     }
@@ -40,17 +43,17 @@ public class SingleLinkedList {
     /**
      * Deletes elements from LL
      *
-     * @param value value
+     * @param value data
      * @return true if deleted
      */
     public boolean deleteNode(int value) {
         if (head == null) return false;
-        if (head.value == value) head = head.next;
+        if (head.data == value) head = head.next;
 
         Node currentNode = head;
         Node prevNode = null;
         while (currentNode != null) {
-            if (currentNode.value == value) {
+            if (currentNode.data == value) {
                 prevNode.next = currentNode.next;
                 return true;
             }
@@ -65,7 +68,7 @@ public class SingleLinkedList {
     public void printLinkedList() {
         Node currentNode = head;
         while (currentNode != null) {
-            System.out.print(currentNode.next == null ? currentNode.value : currentNode.value + " --> ");
+            System.out.print(currentNode.next == null ? currentNode.data : currentNode.data + " --> ");
             currentNode = currentNode.next;
         }
     }
@@ -83,7 +86,7 @@ public class SingleLinkedList {
             return;
         }
 
-        node.value = node.next.value;
+        node.data = node.next.data;
         node.next = node.next.next;
     }
 
@@ -94,7 +97,7 @@ public class SingleLinkedList {
         Node node = head;
         while (node != null) {
 
-            sb.append(node.value);
+            sb.append(node.data);
             if (node.next != null) {
                 sb.append("-->");
             }
@@ -161,7 +164,7 @@ public class SingleLinkedList {
     public boolean find(int data) {
         Node node = head;
         while (node != null) {
-            if (node.value == data) {
+            if (node.data == data) {
                 return true;
             }
             node = node.next;
@@ -202,7 +205,7 @@ public class SingleLinkedList {
     /**
      * Finding middle element of linkedList in single traversal by using runner technique
      *
-     * @return middle element's value
+     * @return middle element's data
      */
     public int findMiddleElement() {
         Node currentNode = head;
@@ -220,7 +223,30 @@ public class SingleLinkedList {
         if (length % 2 == 1) {
             middleNode = middleNode.next;
         }
-        return middleNode.value;
+        return middleNode.data;
+    }
+
+    /**
+     * Deletes duplicates from single linked list
+     * backed by Map
+     *
+     * @asked Transferwise May'18
+     */
+    static Node distinct(Node head) {
+        Map map = new HashMap();
+        Node node = head;
+        Node previous = null;
+        while (node != null) {
+            if (map.containsKey(node.data)) {
+                previous.next = node.next;
+            } else {
+                map.put(node.data, true);
+                previous = node;
+            }
+            node = node.next;
+        }
+
+        return head;
     }
 
     public static void main(String[] args) {
