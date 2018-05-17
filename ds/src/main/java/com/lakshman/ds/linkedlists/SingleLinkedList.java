@@ -249,6 +249,45 @@ public class SingleLinkedList {
         return head;
     }
 
+    /**
+     * Sublist present in the given List
+     *
+     * @param list    list
+     * @param sublist sublist
+     * @return true if sublist of list
+     *
+     * @asked Atlassian May'18 Hackerrank
+     */
+    static int isSubList(Node list, Node sublist) {
+        Node node = list;
+        Node secondNode = sublist;
+        int counter = 0;
+        boolean flag = true;
+        int resultIndex = -1;
+
+        while (node != null) {
+
+            if (node.data == (secondNode.data)) {
+                secondNode = secondNode.next;
+
+                if (flag) {
+                    resultIndex = counter;
+                    flag = false;
+                }
+
+                if (secondNode == null) {
+                    return resultIndex;
+                }
+            }
+            node = node.next;
+            counter++;
+        }
+
+        return -1;
+
+    }
+
+
     public static void main(String[] args) {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         singleLinkedList.insertNode(1);
